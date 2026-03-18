@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 30-Minute Boundary — Free Companion Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F9F5EF;
+    --warm-white: #FDFBF8;
+    --ink: #1A1612;
+    --ink-soft: #3D3530;
+    --accent: #C8622A;
+    --accent-light: #F0DACE;
+    --accent-muted: #E8A882;
+    --gold: #B8960C;
+    --gold-light: #F5EEC8;
+    --sage: #5C7A5E;
+    --sage-light: #D8E8D9;
+    --border: #E2D8CC;
+    --shadow: rgba(26,22,18,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* COVER PAGE */
+  .cover {
+    min-height: 100vh;
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(200,98,42,0.18) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(184,150,12,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cover-badge {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent-muted);
+    border: 1px solid rgba(200,98,42,0.4);
+    padding: 8px 20px;
+    border-radius: 100px;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 8vw, 80px);
+    font-weight: 900;
+    color: var(--warm-white);
+    line-height: 1.05;
+    margin-bottom: 12px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .cover-title span {
+    color: var(--accent);
+  }
+
+  .cover-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(18px, 3vw, 26px);
+    color: rgba(249,245,239,0.6);
+    margin-bottom: 50px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+    margin: 0 auto 50px;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .cover-description {
+    max-width: 520px;
+    font-size: 17px;
+    color: rgba(249,245,239,0.75);
+    line-height: 1.8;
+    margin-bottom: 60px;
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .cover-features {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeUp 0.6s 0.5s ease both;
+  }
+
+  .cover-feature {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(249,245,239,0.6);
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .cover-feature .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  /* MAIN CONTENT */
+  .page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+
+  /* SECTION HEADER */
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    height: 1px;
+    width: 40px;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 40px);
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .section-intro {
+    font-size: 17px;
+    color: var(--ink-soft);
+    margin-bottom: 50px;
+    max-width: 560px;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 70px 0;
+  }
+
+  /* SYSTEM OVERVIEW CARDS */
+  .system-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 50px;
+  }
+
+  .system-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .system-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px var(--shadow);
+  }
+
+  .system-card .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--accent-light);
+    line-height: 1;
+    margin-bottom: 16px;
+  }
+
+  .system-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+
+  .system-card p {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+
+  .time-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+
+  .time-badge.gold {
+    color: var(--gold);
+    background: var(--gold-light);
+  }
+
+  .time-badge.sage {
+    color: var(--sage);
+    background: var(--sage-light);
+  }
+
+  /* QUOTE BLOCK */
+  .quote-block {
+    background: var(--ink);
+    color: var(--warm-white);
+    border-radius: 20px;
+    padding: 48px 52px;
+    margin: 60px 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .quote-block::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 180px;
+    color: rgba(200,98,42,0.15);
+    position: absolute;
+    top: -20px; left: 30px;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .quote-block blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 26px);
+    font-style: italic;
+    line-height: 1.5;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 20px;
+  }
+
+  .quote-block cite {
+    font-size: 13px;
+    font-style: normal;
+    color: var(--accent-muted);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* DAILY TRACKER */
+  .tracker-section {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 30px;
+  }
+
+  .tracker-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .tracker-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  .tracker-date-line {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 6px;
+    min-width: 160px;
+    text-align: right;
+  }
+
+  .habit-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .habit-row:last-child { border-bottom: none; }
+
+  .checkbox-group {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  .checkbox {
+    width: 22px; height: 22px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+  }
+
+  .checkbox:hover { border-color: var(--accent); }
+
+  .checkbox.checked {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .checkbox.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .habit-info { flex: 1; }
+
+  .habit-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .habit-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .habit-note {
+    margin-top: 10px;
+    border-bottom: 1px dashed var(--border);
+    padding-bottom: 4px;
+    font-size: 12px;
+    color: #aaa;
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* WEEKLY VIEW */
+  .weekly-grid {
+    display: grid;
+    grid-template-columns: auto repeat(7, 1fr);
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  .weekly-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    display: flex;
+    align-items: center;
+    padding-right: 12px;
+  }
+
+  .weekly-day-header {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-align: center;
+    color: var(--ink-soft);
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    letter-spacing: 1px;
+  }
+
+  .weekly-cell {
+    width: 100%;
+    aspect-ratio: 1;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    background: white;
+  }
+
+  .weekly-cell:hover { border-color: var(--accent); background: var(--accent-light); }
+  .weekly-cell.done { background: var(--accent); border-color: var(--accent); }
+  .weekly-cell.partial { background: var(--accent-light); border-color: var(--accent-muted); }
+
+  /* FOCUS INTENSITY */
+  .focus-box {
+    background: var(--ink);
+    border-radius: 16px;
+    padding: 32px;
+    color: var(--warm-white);
+    margin-bottom: 20px;
+  }
+
+  .focus-box h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: var(--warm-white);
+  }
+
+  .intensity-bar {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .intensity-block {
+    flex: 1;
+    height: 36px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.1);
+    cursor: pointer;
+    transition: all 0.15s;
+    position: relative;
+  }
+
+  .intensity-block:hover { background: rgba(200,98,42,0.3); border-color: var(--accent); }
+  .intensity-block.active { background: var(--accent); border-color: var(--accent); }
+
+  .intensity-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: rgba(249,245,239,0.4);
+    letter-spacing: 1px;
+  }
+
+  /* SCIENCE CALLOUT */
+  .science-card {
+    border-left: 3px solid var(--gold);
+    background: var(--gold-light);
+    border-radius: 0 12px 12px 0;
+    padding: 20px 24px;
+    margin: 30px 0;
+  }
+
+  .science-card .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+
+  .science-card p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  .science-card a {
+    color: var(--gold);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .science-card a:hover { text-decoration: underline; }
+
+  /* RULES LIST */
+  .rules-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+
+  .rules-list li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    font-size: 15px;
+    color: var(--ink-soft);
+    padding: 16px 20px;
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    line-height: 1.6;
+  }
+
+  .rule-icon {
+    width: 28px; height: 28px;
+    border-radius: 8px;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* REFLECTION PROMPTS */
+  .reflection-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .reflection-item {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 24px;
+  }
+
+  .reflection-item .q {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: 14px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .q-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    background: var(--accent-light);
+    width: 24px; height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .answer-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .answer-line {
+    border-bottom: 1px solid var(--border);
+    height: 28px;
+    width: 100%;
+  }
+
+  /* FOOTER */
+  .footer {
+    background: var(--ink);
+    color: rgba(249,245,239,0.5);
+    text-align: center;
+    padding: 50px 40px;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  .footer strong {
+    color: var(--warm-white);
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 12px;
+  }
+
+  .footer a {
+    color: var(--accent-muted);
+    text-decoration: none;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* PRINT */
+  @media print {
+    .cover { min-height: auto; padding: 40px; page-break-after: always; }
+    .page { padding: 40px; }
+    .system-card:hover { transform: none; box-shadow: none; }
+    .checkbox, .weekly-cell, .intensity-block { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .page { padding: 40px 24px; }
+    .quote-block { padding: 32px 28px; }
+    .tracker-section { padding: 28px 22px; }
+    .weekly-grid { gap: 4px; }
+    .cover { padding: 50px 28px; }
+    .cover-features { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">Free Companion Guide</div>
+  <h1 class="cover-title">The 30-Minute<br><span>Boundary</span></h1>
+  <p class="cover-subtitle">Your Personal System Workbook</p>
+  <div class="cover-divider"></div>
+  <p class="cover-description">
+    A practical companion to the Medium article — with your daily tracker, weekly check-ins, focus intensity log, reflection prompts, and the science behind why this works.
+  </p>
+  <div class="cover-features">
+    <div class="cover-feature"><span class="dot"></span> Daily Habit Tracker</div>
+    <div class="cover-feature"><span class="dot"></span> Weekly Progress View</div>
+    <div class="cover-feature"><span class="dot"></span> Focus Intensity Log</div>
+    <div class="cover-feature"><span class="dot"></span> Reflection Prompts</div>
+  </div>
+</div>
+
+<!-- SYSTEM OVERVIEW -->
+<div class="page">
+  <div class="section-label">The System</div>
+  <h2>Your Four 30-Minute Pillars</h2>
+  <p class="section-intro">Each pillar is a distinct investment. Together, they compound into something most people never experience: full-presence performance across everything you do.</p>
+
+  <div class="system-grid">
+    <div class="system-card">
+      <div class="number">01</div>
+      <h3>Social Media Hard-Cap</h3>
+      <p>Limit low-signal platforms to 30 minutes. Redirect the same impulse toward high-signal inputs — expert content, long-form writing, technical documentation.</p>
+      <span class="time-badge">⏱ 30 min / day max</span>
+    </div>
+    <div class="system-card">
+      <div class="number">02</div>
+      <h3>Applied Skill Practice</h3>
+      <p>Skip the passive course. Use your 30 minutes to actually build something — a workflow, a piece of writing, a real output you can look at and learn from.</p>
+      <span class="time-badge">⏱ 30 min / session</span>
+    </div>
+    <div class="system-card">
+      <div class="number">03</div>
+      <h3>High-Intensity Training</h3>
+      <p>A focused 20–30 min session — Pilates, resistance, HIIT — gives your brain the BDNF boost it needs before deep academic or creative work.</p>
+      <span class="time-badge sage">⏱ 20–30 min</span>
+    </div>
+    <div class="system-card">
+      <div class="number">04</div>
+      <h3>Second Brain Check-In</h3>
+      <p>A brief, intentional review of your Notion or Trello system. Capture, organize, and offload — so your mind is free when you step away from the screen.</p>
+      <span class="time-badge gold">⏱ 15 min / day</span>
+    </div>
+  </div>
+
+  <div class="science-card">
+    <div class="label">🔬 Science Note</div>
+    <p>According to <a href="https://www.fastcompany.com/944128/worker-interrupted-cost-task-switching" target="_blank">research by Gloria Mark (UC Irvine)</a>, a single interruption costs you 23 minutes of focused recovery time. Protecting your attention isn't a nice-to-have — it's the foundation of everything else.</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- DAILY TRACKER -->
+  <div class="section-label">Daily Practice</div>
+  <h2>Today's Tracker</h2>
+  <p class="section-intro">Use this every day. Check each habit off as you complete it. The note field is for a one-line reflection — what did you notice?</p>
+
+  <div class="tracker-section">
+    <div class="tracker-header">
+      <h3>Daily Check-In</h3>
+      <div class="tracker-date-line">Date: _______________</div>
+    </div>
+
+    <div class="habit-row">
+      <div class="checkbox-group">
+        <div class="checkbox" onclick="toggle(this)"></div>
+      </div>
+      <div class="habit-info">
+        <div class="habit-title">
+          📵 Social Media Cap
+          <span class="time-badge" style="font-size:11px;">≤ 30 min</span>
+        </div>
+        <div class="habit-desc">I stayed within my 30-minute limit on low-signal platforms today.</div>
+        <div class="habit-note">What I scrolled less of: _______________________________</div>
+      </div>
+    </div>
+
+    <div class="habit-row">
+      <div class="checkbox-group">
+        <div class="checkbox" onclick="toggle(this)"></div>
+      </div>
+      <div class="habit-info">
+        <div class="habit-title">
+          🛠 Applied Practice Block
+          <span class="time-badge" style="font-size:11px;">30 min</span>
+        </div>
+        <div class="habit-desc">I spent time building or creating something, not just watching or reading about it.</div>
+        <div class="habit-note">What I actually built/practiced: _______________________________</div>
+      </div>
+    </div>
+
+    <div class="habit-row">
+      <div class="checkbox-group">
+        <div class="checkbox" onclick="toggle(this)"></div>
+      </div>
+      <div class="habit-info">
+        <div class="habit-title">
+          🏃 Physical Session
+          <span class="time-badge sage" style="font-size:11px;">20–30 min</span>
+        </div>
+        <div class="habit-desc">I moved intentionally today — Pilates, resistance, HIIT, or equivalent high-intensity.</div>
+        <div class="habit-note">Type of session: _______________________________</div>
+      </div>
+    </div>
+
+    <div class="habit-row">
+      <div class="checkbox-group">
+        <div class="checkbox" onclick="toggle(this)"></div>
+      </div>
+      <div class="habit-info">
+        <div class="habit-title">
+          🧠 Second Brain Review
+          <span class="time-badge gold" style="font-size:11px;">15 min</span>
+        </div>
+        <div class="habit-desc">I reviewed my Notion/Trello, captured new items, and cleared my mental backlog.</div>
+        <div class="habit-note">One thing I offloaded from my brain: _______________________________</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOCUS INTENSITY -->
+  <div class="focus-box">
+    <h4>Today's Focus Intensity</h4>
+    <p style="font-size:14px; color:rgba(249,245,239,0.6); margin-bottom:20px;">How locked-in were you during your most important work block today?</p>
+    <div class="intensity-bar" id="intensityBar">
+      <div class="intensity-block" onclick="setIntensity(1)"></div>
+      <div class="intensity-block" onclick="setIntensity(2)"></div>
+      <div class="intensity-block" onclick="setIntensity(3)"></div>
+      <div class="intensity-block" onclick="setIntensity(4)"></div>
+      <div class="intensity-block" onclick="setIntensity(5)"></div>
+      <div class="intensity-block" onclick="setIntensity(6)"></div>
+      <div class="intensity-block" onclick="setIntensity(7)"></div>
+      <div class="intensity-block" onclick="setIntensity(8)"></div>
+      <div class="intensity-block" onclick="setIntensity(9)"></div>
+      <div class="intensity-block" onclick="setIntensity(10)"></div>
+    </div>
+    <div class="intensity-labels">
+      <span>Scattered</span>
+      <span>Moderate</span>
+      <span>Deep Flow</span>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- WEEKLY TRACKER -->
+  <div class="section-label">Weekly View</div>
+  <h2>7-Day Progress Grid</h2>
+  <p class="section-intro">Click each cell to mark completion. One row per habit, one column per day. At a glance you'll see where your consistency lives — and where it doesn't.</p>
+
+  <div class="tracker-section">
+    <div class="tracker-header">
+      <h3>Week of _______________</h3>
+    </div>
+    <div class="weekly-grid">
+      <div></div>
+      <div class="weekly-day-header">MON</div>
+      <div class="weekly-day-header">TUE</div>
+      <div class="weekly-day-header">WED</div>
+      <div class="weekly-day-header">THU</div>
+      <div class="weekly-day-header">FRI</div>
+      <div class="weekly-day-header">SAT</div>
+      <div class="weekly-day-header">SUN</div>
+
+      <div class="weekly-label">📵 Cap</div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+
+      <div class="weekly-label">🛠 Build</div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+
+      <div class="weekly-label">🏃 Move</div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+
+      <div class="weekly-label">🧠 Brain</div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+      <div class="weekly-cell" onclick="toggleCell(this)"></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- RULES -->
+  <div class="section-label">Core Rules</div>
+  <h2>The Non-Negotiables</h2>
+  <p class="section-intro">These aren't guidelines. They're the filters that make everything else work.</p>
+
+  <ul class="rules-list">
+    <li>
+      <div class="rule-icon">🚫</div>
+      <div><strong>No passive consumption counted as "learning."</strong> Watching a course doesn't count. Writing, building, practicing — that counts.</div>
+    </li>
+    <li>
+      <div class="rule-icon">📵</div>
+      <div><strong>Social media before your first deep work block is banned.</strong> Check it after you've built something, not before.</div>
+    </li>
+    <li>
+      <div class="rule-icon">🏋️</div>
+      <div><strong>Physical session before screen-heavy work whenever possible.</strong> BDNF peaks approximately 20 minutes post-exercise — ride that window.</div>
+    </li>
+    <li>
+      <div class="rule-icon">📋</div>
+      <div><strong>If it's not in the system, it doesn't exist.</strong> Capture every obligation, idea, and deadline. Your brain is for thinking, not storing.</div>
+    </li>
+    <li>
+      <div class="rule-icon">✋</div>
+      <div><strong>Rest counts as a pillar, not a reward.</strong> Scheduled rest with a clear system behind you is what makes the intensity sustainable.</div>
+    </li>
+  </ul>
+
+  <!-- QUOTE -->
+  <div class="quote-block">
+    <blockquote>"A 30-minute boundary isn't a limitation. It's a filter for excellence."</blockquote>
+    <cite>— The 30-Minute Boundary, Medium</cite>
+  </div>
+
+  <hr class="divider">
+
+  <!-- SCIENCE -->
+  <div class="section-label">The Research</div>
+  <h2>Why This Actually Works</h2>
+  <p class="section-intro">Two studies worth bookmarking — not just citing.</p>
+
+  <div class="science-card">
+    <div class="label">🔬 Attention Research</div>
+    <p><strong>Gloria Mark, UC Irvine</strong> — After a single interruption, it takes an average of 23 minutes and 15 seconds to fully return to a task. The implication: protecting uninterrupted blocks isn't a preference, it's a structural necessity for deep work.<br><br>
+    <a href="https://www.fastcompany.com/944128/worker-interrupted-cost-task-switching" target="_blank">→ Read the Fast Company report</a></p>
+  </div>
+
+  <div class="science-card" style="border-left-color: var(--sage); background: var(--sage-light);">
+    <div class="label" style="color: var(--sage);">🧬 Exercise & Brain Performance</div>
+    <p><strong>Brain Sciences, 2025 — Systematic Review</strong> — A review of 12 studies found that high-intensity interval training consistently elevates BDNF, the brain-derived protein that supports neuroplasticity, learning, and memory. Short and intense outperformed long and moderate.<br><br>
+    <a href="https://www.mdpi.com/2076-3425/15/1/34" target="_blank" style="color: var(--sage); font-weight: 600;">→ Read the full review on MDPI</a></p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- REFLECTION PROMPTS -->
+  <div class="section-label">Weekly Reflection</div>
+  <h2>End-of-Week Prompts</h2>
+  <p class="section-intro">Five minutes, once a week. These questions reveal more about your progress than any daily metric will.</p>
+
+  <div class="reflection-list">
+    <div class="reflection-item">
+      <div class="q"><span class="q-num">1</span> What did I actually build or create this week that I'm proud of?</div>
+      <div class="answer-lines">
+        <div class="answer-line"></div>
+        <div class="answer-line"></div>
+        <div class="answer-line"></div>
+      </div>
+    </div>
+    <div class="reflection-item">
+      <div class="q"><span class="q-num">2</span> Where did I waste attention I didn't intend to spend?</div>
+      <div class="answer-lines">
+        <div class="answer-line"></div>
+        <div class="answer-line"></div>
+      </div>
+    </div>
+    <div class="reflection-item">
+      <div class="q"><span class="q-num">3</span> Did my physical sessions actually affect my mental clarity? What did I notice?</div>
+      <div class="answer-lines">
+        <div class="answer-line"></div>
+        <div class="answer-line"></div>
+        <div class="answer-line"></div>
+      </div>
+    </div>
+    <div class="reflection-item">
+      <div class="q"><span class="q-num">4</span> What's one thing I kept carrying in my head that should have been in my second brain?</div>
+      <div class="answer-lines">
+        <div class="answer-line"></div>
+        <div class="answer-line"></div>
+      </div>
+    </div>
+    <div class="reflection-item">
+      <div class="q"><span class="q-num">5</span> If I could only keep one habit from this system next week, which would I protect first — and why?</div>
+      <div class="answer-lines">
+        <div class="answer-line"></div>
+        <div class="answer-line"></div>
+        <div class="answer-line"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>The 30-Minute Boundary</strong>
+  Free companion to the Medium article.<br>
+  Share it, print it, fill it in — but most importantly, use it.<br><br>
+  Written by <em>Nadia Uswatun Nisa</em>
+</div>
+
+<script>
+  function toggle(el) {
+    el.classList.toggle('checked');
+  }
+
+  function toggleCell(el) {
+    el.classList.toggle('done');
+  }
+
+  function setIntensity(level) {
+    const blocks = document.querySelectorAll('.intensity-block');
+    blocks.forEach((b, i) => {
+      b.classList.toggle('active', i < level);
+    });
+  }
+</script>
+</body>
+</html>
